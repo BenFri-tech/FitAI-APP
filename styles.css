@@ -1,17 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;700&display=swap');
 
 :root {
-  --primary: #1a1a1a;
-  --primary-dark: #0f0f0f;
-  --secondary: #2a2a2a;
-  --accent: #3a3a3a;
-  --background: #000000;
-  --card-bg: rgba(26, 26, 26, 0.7);
+  --primary: #0a0a1f;
+  --primary-dark: #050510;
+  --secondary: #2b2b4a;
+  --accent: #6e4ff6;
+  --accent-glow: rgba(110, 79, 246, 0.3);
+  --background: #050510;
+  --card-bg: rgba(26, 26, 46, 0.7);
   --text: #ffffff;
-  --text-muted: #a0a0a0;
-  --highlight: #4a4a4a;
+  --text-muted: #8a8aa0;
+  --highlight: #4a4a8f;
+  --success: #4CAF50;
+  --warning: #FFC107;
+  --error: #FF5252;
+  --gradient-1: linear-gradient(45deg, var(--accent), #9d6fff);
+  --gradient-2: linear-gradient(135deg, var(--accent), #41c7ff);
 }
-
 * {
   margin: 0;
   padding: 0;
@@ -105,8 +110,8 @@ nav a:hover, nav a.active {
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 30px rgba(58, 58, 58, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(58, 58, 58, 0.3);
 }
 
 .card-header {
@@ -128,8 +133,8 @@ nav a:hover, nav a.active {
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
   margin-bottom: 2rem;
 }
 
@@ -145,7 +150,7 @@ nav a:hover, nav a.active {
 
 .tracker-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
 }
 
@@ -161,8 +166,8 @@ form {
 }
 
 .form-group {
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  margin-bottom: 1.5rem;
 }
 
 label {
@@ -172,18 +177,23 @@ label {
 
 input {
   width: 100%;
-  padding: 0.75rem;
-  border-radius: 0.5rem;
-  border: 1px solid var(--secondary);
-  background-color: var(--primary);
+  padding: 1rem;
+  background: var(--primary-dark);
+  border: 2px solid var(--secondary);
+  border-radius: 0.75rem;
   color: var(--text);
+  font-size: 1rem;
   transition: all 0.3s ease;
 }
 
 input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-glow);
   outline: none;
-  border-color: var(--highlight);
-  box-shadow: 0 0 10px var(--highlight);
+}
+
+input::placeholder {
+  color: var(--text-muted);
 }
 
 .btn-primary {
@@ -214,26 +224,72 @@ input:focus {
 }
 
 .workout-timeline {
-  max-height: 400px;
-  overflow-y: auto;
-  padding-right: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--primary-dark);
+}
+
+.workout-timeline::-webkit-scrollbar {
+  width: 6px;
+}
+
+.workout-timeline::-webkit-scrollbar-track {
+  background: var(--primary-dark);
+  border-radius: 3px;
+}
+
+.workout-timeline::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 3px;
 }
 
 .workout-item {
-  background-color: var(--primary);
+  background: var(--card-bg);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.workout-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.workout-date {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.workout-stats {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.workout-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+}
+
+.delete-workout {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.5rem;
   border-radius: 0.5rem;
-  padding: 1rem;
-  margin-bottom: 0.75rem;
   transition: all 0.3s ease;
 }
 
-.workout-item:hover {
-  background-color: var(--secondary);
-  transform: translateX(5px);
-}
-
-.workout-item p {
-  margin-bottom: 0.25rem;
+.delete-workout:hover {
+  color: var(--error);
+  background: rgba(255, 82, 82, 0.1);
 }
 
 #circuitBoard {
@@ -365,4 +421,316 @@ footer {
     .features {
         grid-template-columns: 1fr;
     }
+}
+
+/* KI-Komponenten Stile */
+.ai-insights-card {
+    background: linear-gradient(135deg, var(--card-bg), rgba(110, 79, 246, 0.1));
+    border: 1px solid rgba(110, 79, 246, 0.2);
+}
+
+.ai-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--accent);
+}
+
+.pulse {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.ai-recommendations {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.ai-recommendation {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ai-recommendation i {
+    color: var(--accent);
+}
+
+.ai-recommendation.success i { color: var(--success); }
+.ai-recommendation.warning i { color: var(--warning); }
+.ai-recommendation.error i { color: var(--error); }
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 var(--accent-glow); }
+    70% { box-shadow: 0 0 0 10px rgba(110, 79, 246, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(110, 79, 246, 0); }
+}
+
+/* Modernere Karteneffekte */
+.card {
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(110, 79, 246, 0.2);
+}
+
+/* Futuristische Buttons */
+.btn-primary {
+    background: var(--gradient-1);
+    border: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: var(--gradient-2);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+    z-index: -1;
+}
+
+.btn-primary:hover::before {
+    transform: translateX(0);
+}
+
+/* Animationen */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Mobile Optimierungen */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    nav {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .card {
+        padding: 1.25rem;
+    }
+
+    .workout-stats {
+        flex-wrap: wrap;
+    }
+
+    .stat-value {
+        font-size: 2rem;
+    }
+}
+
+/* Moderne Glasmorphismus-Effekte */
+.glass-card {
+    background: rgba(26, 26, 46, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Moderne Formular-Styles */
+.form-container {
+    max-width: 600px;
+    margin: 2rem auto;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.floating-label {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+.modern-input {
+    width: 100%;
+    padding: 1.2rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid var(--secondary);
+    border-radius: 12px;
+    color: var(--text);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.modern-input:focus + .floating-label,
+.modern-input:not(:placeholder-shown) + .floating-label {
+    top: 0;
+    font-size: 0.8rem;
+    background: var(--primary);
+    padding: 0 0.5rem;
+}
+
+/* Trainingsplan Styles */
+.training-plan {
+    margin-top: 2rem;
+    padding: 2rem;
+    border-radius: 16px;
+}
+
+.plan-day {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--secondary);
+}
+
+.plan-day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.exercise-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.exercise-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+}
+
+/* Saved Plan Styles */
+.no-plan-message {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-muted);
+}
+
+.no-plan-message .large-icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+}
+
+.plan-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-danger {
+    background: rgba(255, 82, 82, 0.1);
+    color: var(--error);
+    border: 1px solid var(--error);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    background: var(--error);
+    color: var(--text);
+}
+
+.save-plan-btn {
+    background: var(--success);
+    color: var(--text);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.save-plan-btn:hover {
+    background: var(--success);
+    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+}
+
+.save-plan-btn i {
+    width: 18px;
+    height: 18px;
+}
+
+/* Verbesserte Styles für das Select-Menü */
+select.modern-input {
+    background: rgba(26, 26, 46, 0.9); /* Dunklerer Hintergrund */
+    color: var(--text);
+    cursor: pointer;
+    padding-right: 2rem; /* Mehr Platz für den Pfeil */
+}
+
+/* Optionen im Dropdown */
+select.modern-input option {
+    background-color: var(--primary-dark);
+    color: var(--text);
+    padding: 1rem;
+}
+
+/* Hover-Effekt für die Optionen */
+select.modern-input option:hover {
+    background-color: var(--secondary);
+}
+
+/* Aktive/Ausgewählte Option */
+select.modern-input option:checked {
+    background-color: var(--accent);
+    color: white;
 }
