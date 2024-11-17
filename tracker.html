@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitTrack AI - Futuristic Workout Tracker</title>
+    <title>FitTrack Ben AI - Futuristic Workout Tracker</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -11,10 +11,12 @@
     <div id="circuitBoard"></div>
     <div class="container">
         <header>
-            <h1 class="gradient-text">FitTrack AI</h1>
+            <h1 class="gradient-text">FitTrack Ben AI</h1>
             <nav>
                 <a href="index.html">Home</a>
-                <a href="tracker.html" class="active">Tracker</a>
+                <a href="tracker.html">Tracker</a>
+                <a href="plan-generator.html">Plan Generator</a>
+                <a href="saved-plan.html">Saved Plan</a>
             </nav>
         </header>
         <main>
@@ -48,6 +50,21 @@
                 </div>
             </div>
 
+            <div class="card ai-insights-card">
+                <div class="card-header">
+                    <h2 class="card-title">KI-Erkenntnisse</h2>
+                    <div class="ai-status">
+                        <span class="pulse"></span>
+                        AI aktiv
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div id="aiRecommendations" class="ai-recommendations">
+                        <!-- KI-Empfehlungen werden hier dynamisch eingefügt -->
+                    </div>
+                </div>
+            </div>
+
             <div class="tracker-grid">
                 <div class="card">
                     <div class="card-header">
@@ -55,18 +72,40 @@
                         <p class="card-description">Add your latest workout to track your progress.</p>
                     </div>
                     <div class="card-content">
-                        <form id="workoutForm">
+                        <form id="workoutForm" autocomplete="off">
                             <div class="form-group">
                                 <label for="workoutType">Workout Type</label>
-                                <input type="text" id="workoutType" name="workoutType" required placeholder="e.g., Running, Strength Training">
+                                <input 
+                                    type="text" 
+                                    id="workoutType" 
+                                    name="workoutType" 
+                                    required 
+                                    placeholder="e.g., Running, Strength Training"
+                                >
                             </div>
                             <div class="form-group">
                                 <label for="duration">Duration (minutes)</label>
-                                <input type="number" id="duration" name="duration" required placeholder="30">
+                                <input 
+                                    type="number" 
+                                    id="duration" 
+                                    name="duration" 
+                                    required 
+                                    placeholder="30"
+                                    min="1"
+                                    max="999"
+                                >
                             </div>
                             <div class="form-group">
                                 <label for="calories">Calories Burned</label>
-                                <input type="number" id="calories" name="calories" required placeholder="200">
+                                <input 
+                                    type="number" 
+                                    id="calories" 
+                                    name="calories" 
+                                    required 
+                                    placeholder="200"
+                                    min="1"
+                                    max="9999"
+                                >
                             </div>
                             <button type="submit" class="btn-primary">
                                 <i data-lucide="plus"></i> Log Workout
@@ -89,7 +128,7 @@
             </div>
         </main>
         <footer>
-            <p>&copy; 2023 FitTrack AI. Revolutionizing fitness, one workout at a time.</p>
+            <p>&copy; 2024 FitTrack Ben AI. Revolutionizing fitness, one workout at a time.</p>
         </footer>
     </div>
     <script src="app.js"></script>
