@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitTrack Ben AI - Training Plan Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div id="circuitBoard"></div>
+    <div class="container">
+        <header>
+            <h1 class="gradient-text">FitTrack Ben AI</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="tracker.html">Tracker</a>
+                <a href="plan-generator.html" class="active">Plan Generator</a>
+                <a href="saved-plan.html">Saved Plan</a>
+            </nav>
+        </header>
+        
+        <main>
+            <div class="card glass-card form-container">
+                <h2 class="card-title">Personalized Training Plan Generator</h2>
+                <form id="planGeneratorForm">
+                    <div class="input-group">
+                        <input type="number" id="age" class="modern-input" placeholder=" " required>
+                        <label for="age" class="floating-label">Age</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="number" id="height" class="modern-input" placeholder=" " required>
+                        <label for="height" class="floating-label">Height (cm)</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="number" id="weight" class="modern-input" placeholder=" " required>
+                        <label for="weight" class="floating-label">Weight (kg)</label>
+                    </div>
+                    <div class="input-group">
+                        <select id="fitnessLevel" class="modern-input" required>
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary">
+                        <i data-lucide="wand-2"></i>
+                        Generate Plan
+                    </button>
+                </form>
+            </div>
+
+            <div id="trainingPlan" class="card glass-card training-plan" style="display: none;">
+                <!-- Training plan will be inserted here -->
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 FitTrack Ben AI. Empowering the future of fitness.</p>
+        </footer>
+    </div>
+    <script src="plan-generator.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html> 

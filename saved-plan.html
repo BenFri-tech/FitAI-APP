@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitTrack Ben AI - Your Saved Plan</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div id="circuitBoard"></div>
+    <div class="container">
+        <header>
+            <h1 class="gradient-text">FitTrack Ben AI</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="tracker.html">Tracker</a>
+                <a href="plan-generator.html">Plan Generator</a>
+                <a href="saved-plan.html">Saved Plan</a>
+            </nav>
+        </header>
+        
+        <main>
+            <div class="card glass-card">
+                <div class="card-header">
+                    <h2 class="card-title">Your Saved Training Plan</h2>
+                    <div class="plan-actions">
+                        <button id="deletePlan" class="btn-danger" style="display: none;">
+                            <i data-lucide="trash-2"></i> Delete Plan
+                        </button>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div id="savedPlanContent" class="training-plan">
+                        <!-- Saved plan will be displayed here -->
+                    </div>
+                    <div id="noPlanMessage" class="no-plan-message">
+                        <i data-lucide="file-question" class="large-icon"></i>
+                        <p>No training plan saved yet. Generate one in the Plan Generator!</p>
+                        <a href="plan-generator.html" class="btn-primary">
+                            <i data-lucide="plus"></i> Create New Plan
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 FitTrack Ben AI. Empowering the future of fitness.</p>
+        </footer>
+    </div>
+    <script src="saved-plan.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html> 
